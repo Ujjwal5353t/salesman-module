@@ -48,7 +48,7 @@ const RetailerLogin = () => {
     <div className="page-container relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/3 -left-32 w-96 h-96 bg-retailer/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/3 -left-32 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
         <div className="absolute bottom-1/3 -right-32 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
       </div>
 
@@ -66,8 +66,8 @@ const RetailerLogin = () => {
         <div className="glass-card rounded-2xl p-8">
           {/* Header */}
           <div className="text-center mb-8">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-retailer/10 border border-retailer/20 mb-4">
-              <Store className="w-8 h-8 text-retailer" />
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 border border-primary/20 mb-4">
+              <Store className="w-8 h-8 text-primary" />
             </div>
             <h1 className="text-2xl font-bold text-foreground mb-2">Retailer Login</h1>
             <p className="text-muted-foreground text-sm">
@@ -128,7 +128,7 @@ const RetailerLogin = () => {
                 <label className="block text-sm font-medium text-foreground">
                   Password
                 </label>
-                <span className="text-xs text-retailer hover:underline cursor-pointer">
+                <span className="text-xs text-primary hover:underline cursor-pointer">
                   Forgot password?
                 </span>
               </div>

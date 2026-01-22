@@ -10,8 +10,8 @@ const Landing = () => {
     <div className="page-container relative overflow-hidden min-h-screen flex flex-col">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-admin/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
       </div>
 
       <div className="relative z-10 w-full max-w-2xl mx-auto flex-1 flex flex-col justify-center">
@@ -39,16 +39,16 @@ const Landing = () => {
             style={{ animationDelay: "0.1s" }}
           >
             <div className="flex flex-col sm:flex-row items-start sm:justify-between mb-4 sm:mb-6">
-              <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl bg-admin/10 border border-admin/20 flex items-center justify-center group-hover:bg-admin/20 transition-colors duration-300">
-                <Shield className="w-5 h-5 sm:w-7 sm:h-7 text-admin" />
+              <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
+                <Shield className="w-5 h-5 sm:w-7 sm:h-7 text-primary" />
               </div>
-              <ChevronRight className="hidden sm:block w-5 h-5 text-muted-foreground group-hover:text-admin group-hover:translate-x-1 transition-all duration-300" />
+              <ChevronRight className="hidden sm:block w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all duration-300" />
             </div>
-            <h2 className="text-base sm:text-xl font-semibold text-foreground mb-2 group-hover:text-admin transition-colors duration-300">
+            <h2 className="text-base sm:text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
               Admin Portal
             </h2>
             <div className="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-border/50">
-              <span className="text-[10px] sm:text-xs font-medium text-admin/80 uppercase tracking-wider">
+              <span className="text-[10px] sm:text-xs font-medium text-primary/80 uppercase tracking-wider">
                 Authorized Personnel Only
               </span>
             </div>
@@ -61,16 +61,16 @@ const Landing = () => {
             style={{ animationDelay: "0.2s" }}
           >
             <div className="flex flex-col sm:flex-row items-start sm:justify-between mb-4 sm:mb-6">
-              <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl bg-retailer/10 border border-retailer/20 flex items-center justify-center group-hover:bg-retailer/20 transition-colors duration-300">
-                <Store className="w-5 h-5 sm:w-7 sm:h-7 text-retailer" />
+              <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
+                <Store className="w-5 h-5 sm:w-7 sm:h-7 text-primary" />
               </div>
-              <ChevronRight className="hidden sm:block w-5 h-5 text-muted-foreground group-hover:text-retailer group-hover:translate-x-1 transition-all duration-300" />
+              <ChevronRight className="hidden sm:block w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all duration-300" />
             </div>
-            <h2 className="text-base sm:text-xl font-semibold text-foreground mb-2 group-hover:text-retailer transition-colors duration-300">
+            <h2 className="text-base sm:text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
               Retailer Portal
             </h2>
             <div className="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-border/50">
-              <span className="text-[10px] sm:text-xs font-medium text-retailer/80 uppercase tracking-wider">
+              <span className="text-[10px] sm:text-xs font-medium text-primary/80 uppercase tracking-wider">
                 For Registered Retailers
               </span>
             </div>

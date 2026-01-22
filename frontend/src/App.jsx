@@ -4,7 +4,7 @@ import AdminLogin from "./pages/AdminLogin.jsx";
 import RetailerLogin from "./pages/RetailerLogin.jsx";
 import RetailerSignup from "./pages/RetailerSignup.jsx";
 import NotFound from "./pages/NotFound.jsx";
-import MasterAdminDashboard from "./pages/MasterAdminDashboard.jsx";
+import MasterAdminDashboard from "./pages/masterAdmin/MasterAdminDashboard.jsx";
 import MasterAdminLogin from "./pages/MasterAdminLogin.jsx";
 
 const App = () => (

@@ -46,8 +46,8 @@ const MasterAdminLogin = () => {
     <div className="page-container relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/3 -left-32 w-96 h-96 bg-yellow-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/3 -right-32 w-96 h-96 bg-yellow-600/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/3 -left-32 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/3 -right-32 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
       </div>
 
       <div className="relative z-10 auth-container animate-fade-in">
@@ -64,8 +64,8 @@ const MasterAdminLogin = () => {
         <div className="glass-card rounded-2xl p-8">
           {/* Header */}
           <div className="text-center mb-8">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-yellow-500/10 border border-yellow-500/20 mb-4">
-              <Crown className="w-8 h-8 text-yellow-500" />
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 border border-primary/20 mb-4">
+              <Crown className="w-8 h-8 text-primary" />
             </div>
             <h1 className="text-2xl font-bold text-foreground mb-2">Master Admin</h1>
             <p className="text-muted-foreground text-sm">
@@ -142,7 +142,7 @@ const MasterAdminLogin = () => {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full py-3 px-4 bg-yellow-500 hover:bg-yellow-600 text-black font-semibold rounded-xl transition-colors duration-200 mt-6 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full py-3 px-4 bg-primary hover:bg-red-600 text-white font-semibold rounded-xl transition-colors duration-200 mt-6 disabled:opacity-50 disabled:cursor-not-allowed"
               disabled={loading}
             >
               {loading ? "Signing in..." : "Access Master Panel"}

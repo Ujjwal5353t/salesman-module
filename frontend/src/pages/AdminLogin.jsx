@@ -51,7 +51,7 @@ const AdminLogin = () => {
     <div className="page-container relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/3 -left-32 w-96 h-96 bg-admin/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/3 -left-32 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
         <div className="absolute bottom-1/3 -right-32 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
       </div>
 
@@ -69,8 +69,8 @@ const AdminLogin = () => {
         <div className="glass-card rounded-2xl p-8">
           {/* Header */}
           <div className="text-center mb-8">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-admin/10 border border-admin/20 mb-4">
-              <Shield className="w-8 h-8 text-admin" />
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 border border-primary/20 mb-4">
+              <Shield className="w-8 h-8 text-primary" />
             </div>
             <h1 className="text-2xl font-bold text-foreground mb-2">Admin Login</h1>
             <p className="text-muted-foreground text-sm">

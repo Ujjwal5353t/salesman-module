@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Crown, UserPlus, LogOut, Menu, X, ArrowLeft } from "lucide-react";
+import { adminTypes } from "../../data/adminTypes";
 
 const MasterAdminDashboard = () => {
   const navigate = useNavigate();
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
   const [activeTab, setActiveTab] = useState("welcome");
 
   const handleLogout = () => {
@@ -16,19 +17,19 @@ const MasterAdminDashboard = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background flex flex-row-reverse">
-      {/* Sidebar Overlay */}
+    <div className="min-h-screen bg-background flex">
+      {/* Sidebar Overlay - only on mobile */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 bg-black/50 z-40"
+          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
           onClick={() => setSidebarOpen(false)}
         />
       )}
 
-      {/* Sidebar */}
+      {/* Sidebar - Left side */}
       <aside
-        className={`fixed inset-y-0 right-0 z-50 w-64 bg-card border-l border-border transform transition-transform duration-300 ease-in-out ${
-          sidebarOpen ? "translate-x-0" : "translate-x-full"
+        className={`fixed lg:static inset-y-0 left-0 z-50 w-64 bg-card border-r border-border transform transition-transform duration-300 ease-in-out ${
+          sidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
         }`}
       >
         <div className="flex flex-col h-full">
@@ -97,10 +98,10 @@ const MasterAdminDashboard = () => {
             <h1 className="text-xl font-semibold text-foreground">
               Welcome, Master Admin 👋
             </h1>
-            {/* Menu Button */}
+            {/* Menu Button - only on mobile */}
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="p-2 rounded-lg hover:bg-muted transition-colors"
+              className="lg:hidden p-2 rounded-lg hover:bg-muted transition-colors"
             >
               {sidebarOpen ? (
                 <X className="w-5 h-5 text-foreground" />
@@ -163,10 +164,12 @@ const MasterAdminDashboard = () => {
                     Admin Type
                   </label>
                   <select className="input-field">
-                    <option value="" disabled selected>Select admin type</option>
-                    <option value="super">Super Admin</option>
-                    <option value="regional">Regional Admin</option>
-                    <option value="support">Support Admin</option>
+                    <option value="" disabled> select an Admin </option>
+                    {adminTypes.map((type) => (
+                    <option key={type} value={type}>
+                      {type}
+                    </option>
+                  ))}
                   </select>
                 </div>
                 <button
