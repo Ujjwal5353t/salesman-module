@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Crown, UserPlus, LogOut, Menu, X, ArrowLeft } from "lucide-react";
+import { adminTypes } from "../data/adminTypes";
 
 const MasterAdminDashboard = () => {
   const navigate = useNavigate();
@@ -164,9 +165,11 @@ const MasterAdminDashboard = () => {
                   </label>
                   <select className="input-field">
                     <option value="" disabled selected>Select admin type</option>
-                    <option value="super">Super Admin</option>
-                    <option value="regional">Regional Admin</option>
-                    <option value="support">Support Admin</option>
+                    {adminTypes.map((type) => (
+                      <option key={type} value={type}>
+                        {type}
+                      </option>
+                    ))}
                   </select>
                 </div>
                 <button
