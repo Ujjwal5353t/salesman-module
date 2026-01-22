@@ -1,22 +1,47 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { Store, ArrowLeft, Mail, Lock, Sparkles } from "lucide-react";
+import { Store, ArrowLeft, Mail, Lock, Sparkles, User } from "lucide-react";
+import { retailerLogin } from "../services/api";
 
 const RetailerLogin = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
+    username: "",
     email: "",
     password: "",
   });
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    setError("");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // UI only - no validation
-    console.log("Retailer login:", formData);
+    setError("");
+    setLoading(true);
+
+    try {
+      const response = await retailerLogin(
+        formData.username,
+        formData.email,
+        formData.password
+      );
+      
+      if (response.success) {
+        console.log("Login successful:", response.data);
+        alert("Login successful! Redirecting to dashboard...");
+        // Navigate to dashboard (create later)
+        // navigate("/retailer/dashboard");
+      }
+    } catch (err) {
+      setError(err.response?.data?.message || "Login failed. Please try again.");
+      console.error("Login error:", err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -52,6 +77,32 @@ const RetailerLogin = () => {
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-5">
+            {/* Error Message */}
+            {error && (
+              <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-500 text-sm">
+                {error}
+              </div>
+            )}
+
+            {/* Username Field */}
+            <div className="space-y-2">
+              <label className="block text-sm font-medium text-foreground">
+                Username
+              </label>
+              <div className="relative">
+                <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                <input
+                  type="text"
+                  name="username"
+                  value={formData.username}
+                  onChange={handleChange}
+                  placeholder="Enter your username"
+                  className="input-field pl-12"
+                  required
+                />
+              </div>
+            </div>
+
             {/* Email Field */}
             <div className="space-y-2">
               <label className="block text-sm font-medium text-foreground">
@@ -66,6 +117,7 @@ const RetailerLogin = () => {
                   onChange={handleChange}
                   placeholder="Enter your email"
                   className="input-field pl-12"
+                  required
                 />
               </div>
             </div>
@@ -89,13 +141,18 @@ const RetailerLogin = () => {
                   onChange={handleChange}
                   placeholder="Enter your password"
                   className="input-field pl-12"
+                  required
                 />
               </div>
             </div>
 
             {/* Submit Button */}
-            <button type="submit" className="btn-primary mt-6">
-              Sign In
+            <button 
+              type="submit" 
+              className="btn-primary mt-6"
+              disabled={loading}
+            >
+              {loading ? "Signing in..." : "Sign In"}
             </button>
           </form>
 

@@ -22,6 +22,21 @@ api.interceptors.request.use(
   }
 );
 
+// SuperAdmin Login
+export const superAdminLogin = async (username, email, password) => {
+  const response = await api.post("/superadminkalogin12345", {
+    username,
+    email,
+    password,
+  });
+  if (response.data.token) {
+    localStorage.setItem("token", response.data.token);
+    localStorage.setItem("user", JSON.stringify(response.data.data));
+  }
+  return response.data;
+};
+
+// Admin Login
 export const adminLogin = async (username, email, password, adminType) => {
   const response = await api.post("/admin/login", {
     username,

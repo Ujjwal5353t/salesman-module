@@ -1,22 +1,45 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Crown, ArrowLeft, User, Lock, Sparkles } from "lucide-react";
+import { Crown, ArrowLeft, User, Lock, Sparkles, Mail } from "lucide-react";
+import { superAdminLogin } from "../services/api";
 
 const MasterAdminLogin = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
+    email: "",
     password: "",
   });
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    setError("");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    console.log("Master Admin login:", formData);
+    setError("");
+    setLoading(true);
+
+    try {
+      const response = await superAdminLogin(
+        formData.username,
+        formData.email,
+        formData.password
+      );
+      
+      if (response.success) {
+        console.log("Login successful:", response.data);
+        navigate("/masterAdminYahaHoga/dashboard");
+      }
+    } catch (err) {
+      setError(err.response?.data?.message || "Login failed. Please try again.");
+      console.error("Login error:", err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -52,6 +75,13 @@ const MasterAdminLogin = () => {
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-5">
+            {/* Error Message */}
+            {error && (
+              <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-500 text-sm">
+                {error}
+              </div>
+            )}
+
             {/* Username Field */}
             <div className="space-y-2">
               <label className="block text-sm font-medium text-foreground">
@@ -66,7 +96,26 @@ const MasterAdminLogin = () => {
                   onChange={handleChange}
                   placeholder="Enter master admin username"
                   className="input-field pl-12"
-                  required={true}
+                  required
+                />
+              </div>
+            </div>
+
+            {/* Email Field */}
+            <div className="space-y-2">
+              <label className="block text-sm font-medium text-foreground">
+                Email Address
+              </label>
+              <div className="relative">
+                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="Enter your email"
+                  className="input-field pl-12"
+                  required
                 />
               </div>
             </div>
@@ -93,9 +142,10 @@ const MasterAdminLogin = () => {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full py-3 px-4 bg-yellow-500 hover:bg-yellow-600 text-black font-semibold rounded-xl transition-colors duration-200 mt-6"
+              className="w-full py-3 px-4 bg-yellow-500 hover:bg-yellow-600 text-black font-semibold rounded-xl transition-colors duration-200 mt-6 disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={loading}
             >
-              Access Master Panel
+              {loading ? "Signing in..." : "Access Master Panel"}
             </button>
           </form>
 

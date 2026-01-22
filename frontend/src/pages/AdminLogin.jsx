@@ -1,24 +1,50 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { Shield, ArrowLeft, User, Lock, ChevronDown, Sparkles } from "lucide-react";
+import { Shield, ArrowLeft, User, Lock, ChevronDown, Sparkles, Mail } from "lucide-react";
 import { adminTypes } from "../data/adminTypes";
+import { adminLogin } from "../services/api";
 
 const AdminLogin = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
+    username: "",
     email: "",
     password: "",
     adminType: "",
   });
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    setError("");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // UI only - no validation
-    console.log("Admin login:", formData);
+    setError("");
+    setLoading(true);
+
+    try {
+      const response = await adminLogin(
+        formData.username,
+        formData.email,
+        formData.password,
+        formData.adminType
+      );
+      
+      if (response.success) {
+        console.log("Login successful:", response.data);
+        alert("Login successful! Redirecting to dashboard...");
+        // Navigate to dashboard (create later)
+        // navigate("/admin/dashboard");
+      }
+    } catch (err) {
+      setError(err.response?.data?.message || "Login failed. Please try again.");
+      console.error("Login error:", err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -54,20 +80,47 @@ const AdminLogin = () => {
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-5">
-            {/* Email/Username Field */}
+            {/* Error Message */}
+            {error && (
+              <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-500 text-sm">
+                {error}
+              </div>
+            )}
+
+            {/* Username Field */}
             <div className="space-y-2">
               <label className="block text-sm font-medium text-foreground">
-                Email or Username
+                Username
               </label>
               <div className="relative">
                 <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
                 <input
                   type="text"
+                  name="username"
+                  value={formData.username}
+                  onChange={handleChange}
+                  placeholder="Enter your username"
+                  className="input-field pl-12"
+                  required
+                />
+              </div>
+            </div>
+
+            {/* Email Field */}
+            <div className="space-y-2">
+              <label className="block text-sm font-medium text-foreground">
+                Email Address
+              </label>
+              <div className="relative">
+                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                <input
+                  type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder="Enter your email or username"
+                  placeholder="Enter your email"
                   className="input-field pl-12"
+                  required
                 />
               </div>
             </div>
@@ -86,6 +139,7 @@ const AdminLogin = () => {
                   onChange={handleChange}
                   placeholder="Enter your password"
                   className="input-field pl-12"
+                  required
                 />
               </div>
             </div>
@@ -116,8 +170,12 @@ const AdminLogin = () => {
             </div>
 
             {/* Submit Button */}
-            <button type="submit" className="btn-primary mt-6">
-              Sign In
+            <button 
+              type="submit" 
+              className="btn-primary mt-6"
+              disabled={loading}
+            >
+              {loading ? "Signing in..." : "Sign In"}
             </button>
           </form>
 
