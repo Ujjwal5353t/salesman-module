@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Shield, ArrowLeft, User, Lock, ChevronDown, Sparkles } from "lucide-react";
+import { adminTypes } from "../data/adminTypes";
 
 const AdminLogin = () => {
   const navigate = useNavigate();
@@ -104,10 +105,11 @@ const AdminLogin = () => {
                   <option value="" disabled>
                     Select admin type
                   </option>
-                  {/* Placeholder options - will be hardcoded later */}
-                  <option value="super">Super Admin</option>
-                  <option value="regional">Regional Admin</option>
-                  <option value="support">Support Admin</option>
+                  {adminTypes.map((type) => (
+                    <option key={type} value={type}>
+                      {type}
+                    </option>
+                  ))}
                 </select>
                 <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground pointer-events-none" />
               </div>

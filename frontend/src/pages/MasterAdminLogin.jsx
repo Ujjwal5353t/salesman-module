@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { Store, ArrowLeft, Mail, Lock, Sparkles } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { Crown, ArrowLeft, User, Lock, Sparkles } from "lucide-react";
 
-const RetailerLogin = () => {
+const MasterAdminLogin = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    email: "",
+    username: "",
     password: "",
   });
 
@@ -15,16 +15,16 @@ const RetailerLogin = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // UI only - no validation
-    console.log("Retailer login:", formData);
+    
+    console.log("Master Admin login:", formData);
   };
 
   return (
     <div className="page-container relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/3 -left-32 w-96 h-96 bg-retailer/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/3 -right-32 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/3 -left-32 w-96 h-96 bg-yellow-500/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/3 -right-32 w-96 h-96 bg-yellow-600/5 rounded-full blur-3xl" />
       </div>
 
       <div className="relative z-10 auth-container animate-fade-in">
@@ -41,45 +41,41 @@ const RetailerLogin = () => {
         <div className="glass-card rounded-2xl p-8">
           {/* Header */}
           <div className="text-center mb-8">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-retailer/10 border border-retailer/20 mb-4">
-              <Store className="w-8 h-8 text-retailer" />
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-yellow-500/10 border border-yellow-500/20 mb-4">
+              <Crown className="w-8 h-8 text-yellow-500" />
             </div>
-            <h1 className="text-2xl font-bold text-foreground mb-2">Retailer Login</h1>
+            <h1 className="text-2xl font-bold text-foreground mb-2">Master Admin</h1>
             <p className="text-muted-foreground text-sm">
-              Access your retailer dashboard
+              Restricted access - Authorized personnel only
             </p>
           </div>
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-5">
-            {/* Email Field */}
+            {/* Username Field */}
             <div className="space-y-2">
               <label className="block text-sm font-medium text-foreground">
-                Email Address
+                Username
               </label>
               <div className="relative">
-                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
                 <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
+                  type="text"
+                  name="username"
+                  value={formData.username}
                   onChange={handleChange}
-                  placeholder="Enter your email"
+                  placeholder="Enter master admin username"
                   className="input-field pl-12"
+                  required={true}
                 />
               </div>
             </div>
 
             {/* Password Field */}
             <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <label className="block text-sm font-medium text-foreground">
-                  Password
-                </label>
-                <span className="text-xs text-retailer hover:underline cursor-pointer">
-                  Forgot password?
-                </span>
-              </div>
+              <label className="block text-sm font-medium text-foreground">
+                Password
+              </label>
               <div className="relative">
                 <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
                 <input
@@ -89,30 +85,24 @@ const RetailerLogin = () => {
                   onChange={handleChange}
                   placeholder="Enter your password"
                   className="input-field pl-12"
+                  required={true}
                 />
               </div>
             </div>
 
             {/* Submit Button */}
-            <button type="submit" className="btn-primary mt-6">
-              Sign In
+            <button
+              type="submit"
+              className="w-full py-3 px-4 bg-yellow-500 hover:bg-yellow-600 text-black font-semibold rounded-xl transition-colors duration-200 mt-6"
+            >
+              Access Master Panel
             </button>
           </form>
 
-          {/* Divider */}
-          <div className="flex items-center gap-4 my-6">
-            <div className="flex-1 h-px bg-border" />
-            <span className="text-xs text-muted-foreground uppercase tracking-wider">or</span>
-            <div className="flex-1 h-px bg-border" />
-          </div>
-
           {/* Footer */}
           <div className="mt-6 pt-6 border-t border-border/50 text-center">
-            <p className="text-sm text-muted-foreground">
-              Having trouble?{" "}
-              <span className="text-retailer hover:underline cursor-pointer">
-                Contact Support
-              </span>
+            <p className="text-xs text-muted-foreground">
+              ⚠️ Unauthorized access attempts will be logged
             </p>
           </div>
         </div>
@@ -127,4 +117,4 @@ const RetailerLogin = () => {
   );
 };
 
-export default RetailerLogin;
+export default MasterAdminLogin;
