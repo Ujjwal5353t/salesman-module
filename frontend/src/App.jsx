@@ -13,8 +13,8 @@ const App = () => (
       <Route path="/" element={<Landing />} />
       <Route path="/admin/login" element={<AdminLogin />} />
       <Route path="/retailer/login" element={<RetailerLogin />} />
-      <Route path="/masterAdminYahaHoga" element={<MasterAdminLogin />} />
-      <Route path="/masterAdminYahaHoga/dashboard" element={<MasterAdminDashboard />} />
+      <Route path="/superadminkalogin12345" element={<MasterAdminLogin />} />
+      <Route path="/superadminkalogin12345/dashboard" element={<MasterAdminDashboard />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   </BrowserRouter>

@@ -8,7 +8,7 @@ const MasterAdminDashboard = () => {
   const [activeTab, setActiveTab] = useState("welcome");
 
   const handleLogout = () => {
-    navigate("/masterAdminYahaHoga");
+    navigate("/superadminkalogin12345");
   };
 
   const menuItems = [

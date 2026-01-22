@@ -32,7 +32,7 @@ const MasterAdminLogin = () => {
       
       if (response.success) {
         console.log("Login successful:", response.data);
-        navigate("/masterAdminYahaHoga/dashboard");
+        navigate("/superadminkalogin12345/dashboard");
       }
     } catch (err) {
       setError(err.response?.data?.message || "Login failed. Please try again.");
